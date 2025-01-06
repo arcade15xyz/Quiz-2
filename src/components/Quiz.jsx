@@ -1,8 +1,7 @@
 import { useState ,useCallback } from "react";
 import QUESTION from '../questions';
-import quizCompleteImg from '../assets/quiz-complete.png';
 import Question from "./Question"; 
-
+import Summary from "./Summary";
 
 export default function Quiz(){
 
@@ -18,21 +17,18 @@ export default function Quiz(){
    const handleSelectAnswer = useCallback( function handleSelectAnswer(selectedAnswer){
 
         setUserAnswers((prevUserAnswers)=>{
-            console.log('Handle select answer is running '+activeQuestionIndex);
             return(
                 [...prevUserAnswers,selectedAnswer]
             );
         });
     },[]);
 
+    console.log("QUIZ USERANSWERS IS " + userAnswers);
     const handleSkipAnswer = useCallback(()=>handleSelectAnswer(null), [handleSelectAnswer]);
 
     if(quizIsComplete){
         return(
-            <div id="summary">
-                <img src={quizCompleteImg} alt="Trophy icon"/>
-                <h2>Quiz Completed !</h2>
-            </div>
+            <Summary userAnswers={userAnswers}  />
         )
     }
 
