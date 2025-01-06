@@ -23,7 +23,7 @@ console.log('From <Answer/> answerState is ' + answerState);
         <li key={answer} className="answer">
             <button 
             onClick={()=>onSelect(answer)}
-            className={cssClass}
+            className={cssClass} disabled={answerState !== ''}
             >{answer}</button>
         </li>
         )
